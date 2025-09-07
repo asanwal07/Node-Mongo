@@ -5,5 +5,3 @@ const connectDb = async () => {
 };
 
 module.exports = connectDb;
-
-// mongodb+srv://akshit_backend_learn:<db_password>@cluster01.2ltujpz.mongodb.net/
