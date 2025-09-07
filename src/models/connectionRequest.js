@@ -22,6 +22,19 @@ const connectionRequestSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+// Everytime before we save this pre will be called for connectionRequest.
+
+connectionRequestSchema.pre("save", function (next) {
+    const connectionRequest = this;
+
+    if (
+        connectionRequest.fromUserId.toString() === connectionRequest.toUserId
+    ) {
+        throw new Error("You cannot send request to yourself");
+    }
+    next();
+});
+
 const connectionRequestModel = new mongoose.model(
     "ConnectionRequest",
     connectionRequestSchema

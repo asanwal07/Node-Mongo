@@ -9,9 +9,9 @@ const validateConnectionRequest = async (req, res, next) => {
         const toUserId = req.params.toUserId;
         const status = req.params.status;
 
-        if (fromUserId.toString() === toUserId) {
-            return res.status(400).send("Connection Request is not valid.");
-        }
+        // if (fromUserId.toString() === toUserId) {
+        //     return res.status(400).send("Connection Request is not valid.");
+        // }
 
         if (!ALLOWED_STATUS_TYPES.includes(status)) {
             return res.status(400).json({
