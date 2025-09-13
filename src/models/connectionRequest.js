@@ -24,17 +24,18 @@ const connectionRequestSchema = new mongoose.Schema(
 
 // Everytime before we save this pre will be called for connectionRequest.
 
-connectionRequestSchema.pre("save", function (next) {
-    const connectionRequest = this;
+// connectionRequestSchema.pre("save", function (next) {
+//     const connectionRequest = this;
 
-    if (
-        connectionRequest.fromUserId.toString() === connectionRequest.toUserId
-    ) {
-        throw new Error("You cannot send request to yourself");
-    }
-    next();
-});
+//     if (
+//         connectionRequest.fromUserId.toString() === connectionRequest.toUserId
+//     ) {
+//         throw new Error("You cannot send request to yourself");
+//     }
+//     next();
+// });
 
+// Compund index on conectionModel(Basically indexing on two things) to make the query faster,
 connectionRequestSchema.index({ fromUserId: 1, toUserId: 1 });
 
 const connectionRequestModel = new mongoose.model(

@@ -28,7 +28,7 @@ requestsRouter.post(
             const data = await connectionRequest.save();
 
             res.json({
-                message: "Connection Request Sent",
+                message: status === "interested" ? "Sent" : "Ignored",
                 data,
             });
         } catch (err) {
